@@ -7,12 +7,10 @@ services:
     ports:
       - 6380:6379
 
-  users:
+  client:
     build: .
     environment:
       PORT: 9000
-      MONGO_URI: mongodb://mongo
-      MONGO_USER_COLLECTION_NAME: users
     ports:
       - 9000:9000
 
@@ -24,18 +22,18 @@ services:
       SPIKE_REDIS_HOST: redis://redis
       SPIKE_CLIENT_ID: lvE9ErHNcKLGvL4gf8mXSgXr1dis3IDO7pTD8K8u
       SPIKE_CLIENT_SECRET: Kk3Xz9a5PZVnBK~BXJevvOlqE25tfI7uemD~WrsonsFrISpT0FMqukRfqn_8v_7i5nMpWZsb5Mc4G4wwfXxoj4VlyDTMZnH5klXC
-      SPIKE_URL: https://51.144.178.121:1337
+      SPIKE_URL: https://ospike.northeurope.cloudapp.azure.com
       OUTGOING_SERVICES: >
         [
           {
             "route": "/api/*",
-            "target": "https://172.23.80.1:8000",
-            "audience": "aLFUQ447znCQqVZb4daIjv9NM7CyPx",
+            "target": "http://172.21.16.1:8000",
+            "audience": "aLFUQ447znCQqVZb4daIjv9NM7CyPx", 
             "useBearerToken": false
           }
         ]
 
     sysctls:
-      - net.ipv4.tcp_retries2=3 # this parameter improves redis connectivity
+      - net.ipv4.tcp_retries2=3 
     ports:
-      - 9001:9001
+      - 9001:9001 

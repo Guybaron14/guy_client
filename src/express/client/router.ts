@@ -6,13 +6,10 @@ import { createUserRequestSchema, getUserRequestSchema, deleteUserRequestSchema 
 
 const userRouter: Router = Router();
 
-// scopes: get
 userRouter.get('/', ValidateRequest(getUserRequestSchema), wrapController(UserController.getUsers));
 
-// scopes: create
 userRouter.post('/', ValidateRequest(createUserRequestSchema), wrapController(UserController.createUser));
 
-// scopes: delete
 userRouter.delete('/:id', ValidateRequest(deleteUserRequestSchema), wrapController(UserController.deleteUser));
 
 export default userRouter;
